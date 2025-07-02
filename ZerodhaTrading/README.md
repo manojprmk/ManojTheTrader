@@ -1,79 +1,237 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Zerodha Trading App - React Native
 
-# Getting Started
+A comprehensive trading application built with React Native, designed to integrate with Zerodha's API for stock trading, portfolio management, and market analysis.
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+## 📱 Features
 
-## Step 1: Start the Metro Server
+### Core Features
+- **Dashboard**: Market overview with indices, top gainers/losers
+- **Portfolio Management**: View holdings, P&L, and portfolio analytics
+- **Watchlist**: Add/remove stocks, search functionality
+- **Order Management**: Place buy/sell orders, view order history
+- **Stock Details**: Detailed stock information with charts
+- **User Profile**: Account management and settings
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+### Technical Features
+- Redux state management
+- Mock API integration (with real Zerodha API structure)
+- Modern UI with React Native Paper
+- Navigation with React Navigation
+- TypeScript support
+- Chart visualization ready
 
-To start Metro, run the following command from the _root_ of your React Native project:
+## 🚀 Getting Started
 
-```bash
-# using npm
-npm start
+### Prerequisites
+- Node.js (>= 18)
+- React Native CLI
+- Android Studio (for Android development)
+- Xcode (for iOS development - macOS only)
 
-# OR using Yarn
-yarn start
+### Installation
+
+1. **Clone and navigate to the project**
+   ```bash
+   cd ZerodhaTrading
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Install iOS dependencies** (macOS only)
+   ```bash
+   cd ios && pod install && cd ..
+   ```
+
+4. **Start Metro bundler**
+   ```bash
+   npm start
+   ```
+
+5. **Run the app**
+   ```bash
+   # For Android
+   npm run android
+   
+   # For iOS (macOS only)
+   npm run ios
+   ```
+
+## 📖 Demo Usage
+
+### Login Credentials
+Use these demo credentials to test the app:
+- **User ID**: `demo`
+- **Password**: `demo123`
+- **2FA**: Leave empty or enter any 6 digits
+
+### App Navigation
+1. **Dashboard**: Market overview and quick trading actions
+2. **Portfolio**: View your holdings and P&L
+3. **Watchlist**: Search and track favorite stocks
+4. **Orders**: Place new orders and view order history
+5. **Profile**: Account settings and app information
+
+## 🏗️ Architecture
+
+### Project Structure
+```
+src/
+├── components/          # Reusable UI components
+├── screens/            # Main application screens
+│   ├── DashboardScreen.tsx
+│   ├── PortfolioScreen.tsx
+│   ├── WatchlistScreen.tsx
+│   ├── OrdersScreen.tsx
+│   ├── ProfileScreen.tsx
+│   ├── LoginScreen.tsx
+│   ├── StockDetailScreen.tsx
+│   └── PlaceOrderScreen.tsx
+├── navigation/         # Navigation configuration
+│   └── AppNavigator.tsx
+├── services/          # API services
+│   └── api.ts
+├── store/            # Redux store configuration
+│   └── index.ts
+├── types/           # TypeScript type definitions
+│   └── index.ts
+└── utils/          # Utility functions
 ```
 
-## Step 2: Start your Application
+### State Management
+The app uses Redux Toolkit for state management with the following structure:
+- **User State**: Authentication and user information
+- **Portfolio State**: Holdings and P&L data
+- **Orders State**: Trading orders and history
+- **Watchlist State**: Tracked stocks
+- **Market Data State**: Live market information
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+## 🔌 API Integration
 
-### For Android
+### Mock API
+Currently uses mock data for demonstration. The API service (`src/services/api.ts`) includes:
+- User authentication
+- Market data fetching
+- Portfolio management
+- Order placement
+- Stock search and quotes
 
-```bash
-# using npm
-npm run android
+### Real Zerodha Integration
+To integrate with real Zerodha KiteConnect API:
 
-# OR using Yarn
-yarn android
+1. Register for KiteConnect API
+2. Update `src/services/api.ts` with real endpoints
+3. Implement proper authentication flow
+4. Add WebSocket for real-time data
+
+Example integration:
+```typescript
+// Replace mock functions with real API calls
+const API_BASE_URL = 'https://api.kite.trade';
+const API_KEY = 'your_api_key';
+
+// Implement OAuth2 flow for authentication
+// Add WebSocket connection for live data
 ```
 
-### For iOS
+## 🎨 UI/UX Features
 
-```bash
-# using npm
-npm run ios
+### Design System
+- **Colors**: Blue-based theme matching trading apps
+- **Typography**: Clear, readable fonts for financial data
+- **Icons**: Material Design icons for consistency
+- **Cards**: Shadow-based cards for information grouping
 
-# OR using Yarn
-yarn ios
-```
+### Responsive Design
+- Optimized for both phones and tablets
+- Proper spacing and touch targets
+- Accessibility support
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+## 🔧 Development
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+### Available Scripts
+- `npm start`: Start Metro bundler
+- `npm run android`: Run Android app
+- `npm run ios`: Run iOS app
+- `npm run lint`: Run ESLint
+- `npm test`: Run tests
 
-## Step 3: Modifying your App
+### Development Notes
+- TypeScript is configured for type safety
+- ESLint is set up with React Native rules
+- Metro bundler configuration is optimized
 
-Now that you have successfully run the app, let's modify it.
+## 📱 Screenshots
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+*Login Screen*: Clean authentication interface with demo credentials
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+*Dashboard*: Market overview with quick trading actions
 
-## Congratulations! :tada:
+*Portfolio*: Detailed holdings with P&L calculations
 
-You've successfully run and modified your React Native App. :partying_face:
+*Orders*: Order placement and history management
 
-### Now what?
+*Watchlist*: Stock search and tracking functionality
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+## 🔐 Security Considerations
 
-# Troubleshooting
+### For Production Use
+1. Implement proper authentication tokens
+2. Add biometric authentication
+3. Encrypt sensitive data
+4. Use secure storage for credentials
+5. Implement session management
+6. Add rate limiting for API calls
 
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+## 🚀 Future Enhancements
 
-# Learn More
+### Planned Features
+- Real-time WebSocket integration
+- Advanced charting with TradingView
+- Options trading support
+- Mutual funds integration
+- News and research integration
+- Push notifications
+- Dark mode theme
+- Multiple language support
 
-To learn more about React Native, take a look at the following resources:
+### Technical Improvements
+- Add comprehensive tests
+- Implement offline data caching
+- Add performance monitoring
+- Implement CI/CD pipeline
+- Add error tracking (Sentry)
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+## 📄 License
+
+This project is for educational and demonstration purposes. 
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
+
+## 📞 Support
+
+For issues and questions:
+- Create an issue in the repository
+- Check existing documentation
+- Review the API integration guide
+
+## ⚠️ Disclaimer
+
+This is a demo application for educational purposes. For production trading:
+- Use proper risk management
+- Implement real-time data feeds
+- Add comprehensive error handling
+- Follow financial regulations
+- Use secure authentication methods
+
+---
+
+**Happy Trading! 📈**
